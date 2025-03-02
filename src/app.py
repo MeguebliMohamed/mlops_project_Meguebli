@@ -8,7 +8,7 @@ from src.model_pipeline import train_model, prepare_data, load_data_from_mysql
 from sklearn.metrics import accuracy_score
 import os
 import logging
-# Testing GitHub Actions with secrets test 2222
+# Testing GitHub Actions with secrets test 222255555555555
 # Re-testing GitHub Actions after fixing checkout
 # Triggering GitHub Actions workflow
 # Configuration des logs
