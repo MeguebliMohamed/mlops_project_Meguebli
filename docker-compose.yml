@@ -10,14 +10,15 @@ services:
       mysql:
         condition: service_healthy
       mlflow:
-        condition: service_started
+        condition: service_healthy
+    env_file:
+      - .env  # Load RETRAIN_TOKEN from .env
     environment:
       - DOCKER_ENV=true
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
       - MYSQL_DB=churn_db
-      - MLFLOW_TRACKING_URI=http://mlflow:5000
     volumes:
       - /tmp/mlruns:/app/mlruns
 
@@ -46,16 +47,18 @@ services:
       - mysql_data:/var/lib/mysql
 
   mlflow:
-    image: ghcr.io/mlflow/mlflow
-    command: mlflow server --backend-store-uri sqlite:////mlflow/mlflow.db --default-artifact-root /mlflow --host 0.0.0.0 --port 5000
-    environment:
-      - MLFLOW_BACKEND_STORE_URI=sqlite:////mlflow/mlflow.db
-      - MLFLOW_DEFAULT_ARTIFACT_ROOT=/mlflow
-    volumes:
-      - ./mlflow_data:/mlflow
+    image: ghcr.io/mlflow/mlflow:v2.7.1
     ports:
       - "5000:5000"
-
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri file:///app/mlruns --default-artifact-root /app/mlruns
+    volumes:
+      - /tmp/mlruns:/app/mlruns
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
 
   elasticsearch:
     image: elasticsearch:7.17.0
@@ -72,7 +75,3 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-
-volumes:
-  mysql_data:
-  es_data:
