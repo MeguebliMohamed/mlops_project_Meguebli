@@ -8,7 +8,7 @@ from src.model_pipeline import train_model, prepare_data, load_data_from_mysql
 from sklearn.metrics import accuracy_score
 import os
 import logging
-# Testing GitHub Actions with secrets
+# Testing GitHub Actions with secrets test 2222
 # Triggering GitHub Actions workflow
 # Configuration des logs
 logging.basicConfig(level=logging.INFO)
