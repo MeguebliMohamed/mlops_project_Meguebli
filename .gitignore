@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+*.egg-info/
+*.egg
+
+# Docker
+/tmp/mlruns/
+mysql_data/
+es_data/
+
+# ML artifacts
+*.joblib
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/

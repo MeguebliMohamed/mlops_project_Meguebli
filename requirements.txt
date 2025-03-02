@@ -1,0 +1,15 @@
+pandas
+joblib
+mysql-connector-python
+scikit-learn
+mlflow
+fastapi
+uvicorn
+pymysql
+flake8
+black
+bandit
+pytest
+psutil
+elasticsearch
+imbalanced-learn
