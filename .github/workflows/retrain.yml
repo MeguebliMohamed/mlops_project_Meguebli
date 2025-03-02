@@ -32,6 +32,6 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.RETRAIN_TOKEN }}" \
             -H "Content-Type: application/json" \
-            https://8f5c-165-50-3-88.ngrok-free.app/retrain
+            https://643b-102-31-152-63.ngrok-free.app/retrain
         env:
           RETRAIN_TOKEN: ${{ secrets.RETRAIN_TOKEN }}
