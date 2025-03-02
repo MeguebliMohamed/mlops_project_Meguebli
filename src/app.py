@@ -9,6 +9,7 @@ from sklearn.metrics import accuracy_score
 import os
 import logging
 # Testing GitHub Actions with secrets
+# Triggering GitHub Actions workflow
 # Configuration des logs
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
